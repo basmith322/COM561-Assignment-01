@@ -3,46 +3,56 @@ package trainSystem;
 import java.util.Iterator;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-//trainTrack.trainA_MoveOntoTrack(trainName);
-//trainTrack.trainA_MoveToJunction(trainName);
-//trainTrack.trainA_MoveAcrossJunction(trainName);
-//trainTrack.trainA_MoveToNextJunction(trainName);
-//trainTrack.trainA_MoveAcrossSecondJunction(trainName);
-//trainTrack.trainA_MoveToExit(trainName);
 public class Activity {
+
     private final CopyOnWriteArrayList<String> theActivities;
+
     private final String[] trainTrack;
 
+    // Constructor for objects of class Activity
+    // A reference to the track is passed as a parameter
     public Activity(String[] trainTrack) {
         theActivities = new CopyOnWriteArrayList<>();
         this.trainTrack = trainTrack;
     }
 
     public void addMovedTo(int section) {
-        String tempString1 = "Train " + trainTrack[section] + " moving to/moved to [" + section + "]";
+        // add an activity message to the activity history
+        String tempString1 = "Train " + trainTrack[section] + " moving/moved to [" + section + "]";
         theActivities.add(tempString1);
+        // add the current state of the track to the activity history
         theActivities.add(trackString());
-    }
+    }// end addMovedTo
 
     public void addMessage(String message) {
+        // add an activity message to the activity history
         String tempString1 = message;
         theActivities.add(tempString1);
-    }
+    }// end addMessage
 
     public void printActivities() {
-        System.out.println("TRAIN TRACK ACTIVITY(Tracks[0..19])");
+        // print all the train activity history
+        System.out.println("TRAIN TRACK ACTIVITY(Tracks [0..18])");
         Iterator<String> iterator = theActivities.iterator();
         while (iterator.hasNext()) {
             System.out.println(iterator.next());
         }
-    }
+    }// end printActivities
 
-    private String trackString() {
-        String trackStateAsString = trainTrack[5] + trainTrack[6] + trainTrack[7] + trainTrack[8] + trainTrack[9] + "\n"
-                + trainTrack[0] + trainTrack[10] + trainTrack[11] + trainTrack[12] + trainTrack[13] + trainTrack[14] + "\n"
-                + trainTrack[15] + trainTrack[16] + trainTrack[17] + trainTrack[18] + trainTrack[0] + "\n"
-                + trainTrack[1] + trainTrack[2] + trainTrack[3] + trainTrack[4] + "\n";
+    // Utility method to represent the track as a string for printing/display
+    public String trackString() {
+        String trackStateAsString = "           " + trainTrack[5] + "\n"
+                + "        " + trainTrack[4] + "  " + trainTrack[6] + "\n"
+                + "      " + trainTrack[3] + "      " + trainTrack[7] + "\n"
+                + "      " + trainTrack[2] + "      " + trainTrack[8] + "\n"
+                + "        " + trainTrack[1] + "  " + trainTrack[9] + "\n"
+                + "           " + trainTrack[0] + "\n"
+                + "        " + trainTrack[10] + "  " + trainTrack[18] + "\n"
+                + "      " + trainTrack[11] + "      " + trainTrack[17] + "\n"
+                + "      " + trainTrack[12] + "      " + trainTrack[16] + "\n"
+                + "        " + trainTrack[13] + "  " + trainTrack[15] + "\n"
+                + "           " + trainTrack[14] + "\n";
         return (trackStateAsString);
+    }// end trackString
 
-    }
-}
+} // end Activity

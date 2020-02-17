@@ -5,11 +5,10 @@ public class TrainTrack {
             "[..]", "[..]", "[..]", "[..]", "[..]", "[..]", "[..]", "[..]", "[..]", "[..]"};
 
     //declare array to hold the binary semaphores for access to track slots (sections)
-    private final MageeSemaphore slotSem[] = new MageeSemaphore[19];
+    private final MageeSemaphore[] slotSem = new MageeSemaphore[19];
 
-    Activity theTrainActivity;
-
-    MageeSemaphore trackALimit;
+    final Activity theTrainActivity;
+    final MageeSemaphore trackALimit;
 
     //Constructor for TrainTrack
     public TrainTrack() {
@@ -25,13 +24,13 @@ public class TrainTrack {
     }
 
     //region Train A code
-    //************ Code for moving train A ***************
     public void trainA_MoveOntoTrack(String trainName) {
         CDS.idleQuietly((int) (Math.random() * 100));
         //record the train activity
         theTrainActivity.addMessage("Train " + trainName + " is joining/joined the A loop at section 5");
         slotSem[4].P();
         slotSem[5].P(); //wait for slots 4 and 5 to be empty
+        slotSem[4].V();
         slots[5] = "[" + trainName + "]"; //move train into slot 5
     }//end function
 
@@ -54,10 +53,10 @@ public class TrainTrack {
         CDS.idleQuietly((int) Math.random() * 100);
         trackALimit.P(); //wait for space on the track
         slotSem[0].P(); //wait for the junction to be free
-//        slotSem[18].P(); //ensure 18 is empty
+        slotSem[18].P(); //ensure 18 is empty
         slotSem[10].P(); //ensure slot after the junction is free
         slots[0] = slots[9]; //move train onto junction
-        slots[9] = "[..]";
+        slots[9] =  "[..]";
         theTrainActivity.addMovedTo(0);
         slotSem[9].V(); //signal slot that is being left
         //move off junction
@@ -70,14 +69,14 @@ public class TrainTrack {
 
     public void trainA_MoveToNextJunction(String trainName) {
         CDS.idleQuietly((int) (Math.random() * 100));
-        int currentPosition = 10;
+        int currentPosition = 12;
         do {
             slotSem[currentPosition + 1].P();
             slots[currentPosition + 1] = slots[currentPosition];
             slots[currentPosition] = "[..]";
             theTrainActivity.addMovedTo(currentPosition + 1);
             slotSem[currentPosition].V();
-            currentPosition++;
+            currentPosition ++;
         } while (currentPosition < 18);
         CDS.idleQuietly((int) (Math.random() * 100));
     }//end MoveToNextJunction
@@ -126,6 +125,7 @@ public class TrainTrack {
         theTrainActivity.addMessage("Train " + trainName + " is joining/joined the A loop at section 14");
         slotSem[13].P();
         slotSem[14].P(); //wait for slots 4 and 5 to be empty
+        slotSem[13].V();
         slots[14] = "[" + trainName + "]"; //move train into slot 5
     }//end function
 

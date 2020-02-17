@@ -4,7 +4,7 @@ import java.util.concurrent.Semaphore;
 
 class MageeSemaphore
 {
-    private Semaphore sem;
+    private final Semaphore sem;
 
     public MageeSemaphore(int initialCount)
     {
@@ -14,7 +14,7 @@ class MageeSemaphore
     public void P()
     {
         try {
-            sem.acquire();
+                sem.acquire();
         } catch (InterruptedException ex) {System.out.println("Interrupted when waiting");}
     } // end P()
 

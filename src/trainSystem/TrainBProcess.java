@@ -1,8 +1,8 @@
 package trainSystem;
 
 public class TrainBProcess extends Thread {
-    String trainName;
-    TrainTrack theTrack;
+    final String trainName;
+    final TrainTrack theTrack;
 
     public TrainBProcess(String trainName, TrainTrack theTrack) {
         this.trainName = trainName;
@@ -15,7 +15,7 @@ public class TrainBProcess extends Thread {
         theTrack.trainB_MoveToJunction(trainName);
         theTrack.trainB_MoveAcrossJunction(trainName);
         theTrack.trainB_MoveToNextJunction(trainName);
-        theTrack.trainB_MoveAcrossSecondJunction(trainName);
-        theTrack.trainB_MoveToExit(trainName);
+//        theTrack.trainB_MoveAcrossSecondJunction(trainName);
+//        theTrack.trainB_MoveToExit(trainName);
     }
 }
