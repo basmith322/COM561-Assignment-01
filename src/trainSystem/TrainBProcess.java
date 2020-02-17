@@ -1,9 +1,21 @@
 package trainSystem;
 
-public class TrainBProcess {
-    public TrainBProcess(String s, TrainTrack theTrainTrack) {
+public class TrainBProcess extends Thread {
+    String trainName;
+    TrainTrack theTrack;
+
+    public TrainBProcess(String trainName, TrainTrack theTrack) {
+        this.trainName = trainName;
+        this.theTrack = theTrack;
     }
 
-    public void start() {
+    @Override
+    public void run() {
+        theTrack.trainB_MoveOntoTrack(trainName);
+        theTrack.trainB_MoveToJunction(trainName);
+        theTrack.trainB_MoveAcrossJunction(trainName);
+        theTrack.trainB_MoveToNextJunction(trainName);
+        theTrack.trainB_MoveAcrossSecondJunction(trainName);
+        theTrack.trainB_MoveToExit(trainName);
     }
 }
