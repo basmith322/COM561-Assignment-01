@@ -1,13 +1,14 @@
 package trainSystem;
 
 public class TrainTrackDriver {
-    static final int NUM_OF_A_TRAINS = 1;
-    static final int NUM_OF_B_TRAINS = 1;
+    static final int NUM_OF_A_TRAINS = 2;
+    static final int NUM_OF_B_TRAINS = 2;
     static TrainTrack theTrainTrack;
 
     public static void main(String[] args) {
         //create train track
         theTrainTrack = new TrainTrack();
+
         System.out.println("Started");
 
         //create arrays to hold the trains
@@ -39,14 +40,16 @@ public class TrainTrackDriver {
             try {
                 trainAProcess[i].join();
             } catch (InterruptedException ex) {
+                ex.printStackTrace();
             }//end try/catch
         }//end for
-        for (int i = 0; i < NUM_OF_B_TRAINS; i++) {
+        //end for
+        for (int i = 0; i < NUM_OF_B_TRAINS; i++)
             try {
                 trainBProcess[i].join();
             } catch (InterruptedException ex) {
+                ex.printStackTrace();
             }//end try/catch
-        }//end for
 
         //Display all train activity that took place
         theTrainTrack.theTrainActivity.printActivities();

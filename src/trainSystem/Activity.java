@@ -1,12 +1,9 @@
 package trainSystem;
 
-import java.util.Iterator;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Activity {
-
     private final CopyOnWriteArrayList<String> theActivities;
-
     private final String[] trainTrack;
 
     // Constructor for objects of class Activity
@@ -26,22 +23,20 @@ public class Activity {
 
     public void addMessage(String message) {
         // add an activity message to the activity history
-        String tempString1 = message;
-        theActivities.add(tempString1);
+        theActivities.add(message);
     }// end addMessage
 
     public void printActivities() {
         // print all the train activity history
         System.out.println("TRAIN TRACK ACTIVITY(Tracks [0..18])");
-        Iterator<String> iterator = theActivities.iterator();
-        while (iterator.hasNext()) {
-            System.out.println(iterator.next());
+        for (String theActivity : theActivities) {
+            System.out.println(theActivity);
         }
     }// end printActivities
 
     // Utility method to represent the track as a string for printing/display
     public String trackString() {
-        String trackStateAsString = "           " + trainTrack[5] + "\n"
+        return ("           " + trainTrack[5] + "\n"
                 + "        " + trainTrack[4] + "  " + trainTrack[6] + "\n"
                 + "      " + trainTrack[3] + "      " + trainTrack[7] + "\n"
                 + "      " + trainTrack[2] + "      " + trainTrack[8] + "\n"
@@ -51,8 +46,7 @@ public class Activity {
                 + "      " + trainTrack[11] + "      " + trainTrack[17] + "\n"
                 + "      " + trainTrack[12] + "      " + trainTrack[16] + "\n"
                 + "        " + trainTrack[13] + "  " + trainTrack[15] + "\n"
-                + "           " + trainTrack[14] + "\n";
-        return (trackStateAsString);
+                + "           " + trainTrack[14] + "\n");
     }// end trackString
 
 } // end Activity
