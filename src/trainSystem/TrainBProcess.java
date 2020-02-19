@@ -12,9 +12,9 @@ public class TrainBProcess extends Thread {
     @Override
     public void run() {
         theTrack.trainB_MoveOntoTrack(trainName);
-        theTrack.trainB_MoveToJunction();
-        theTrack.trainB_MoveAcrossJunction();
-        theTrack.trainB_MoveToNextJunction();
+        theTrack.trainB_MoveTowardFirstJunction();
+        theTrack.trainB_MoveAcrossFirstJunction();
+        theTrack.trainB_MoveTowardSecondJunction();
         theTrack.trainB_MoveAcrossSecondJunction();
         theTrack.trainB_MoveToExit(trainName);
     }

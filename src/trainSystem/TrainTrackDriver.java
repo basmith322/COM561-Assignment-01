@@ -1,8 +1,8 @@
 package trainSystem;
 
 public class TrainTrackDriver {
-    static final int NUM_OF_A_TRAINS = 2;
-    static final int NUM_OF_B_TRAINS = 2;
+    static final int NUM_OF_A_TRAINS = 10;
+    static final int NUM_OF_B_TRAINS = 10;
     static TrainTrack theTrainTrack;
 
     public static void main(String[] args) {
