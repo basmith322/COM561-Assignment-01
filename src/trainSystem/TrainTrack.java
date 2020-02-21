@@ -149,10 +149,12 @@ public class TrainTrack {
         theTrainActivity.addMovedTo(9);
         slotSem[8].V(); //release 8
         slotSem[10].P(); //wait for 10 to be free
+        slotSem[18].P(); //wait for 18 to be free
         slots[0] = slots[9]; //move from 9 into 0
         slots[9] = "[..]"; //empty 9
         theTrainActivity.addMovedTo(0);
         slotSem[9].V(); //release 9
+        slotSem[18].V();
         slots[10] = slots[0]; //move from 0 into 10
         slots[0] = "[..]"; //empty 0
         theTrainActivity.addMovedTo(10);

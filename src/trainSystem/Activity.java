@@ -19,6 +19,7 @@ public class Activity {
         theActivities.add(tempString1);
         // add the current state of the track to the activity history
         theActivities.add(trackString());
+        System.out.println(trackString());
     }// end addMovedTo
 
     public void addMessage(String message) {
