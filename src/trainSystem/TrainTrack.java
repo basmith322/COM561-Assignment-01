@@ -29,8 +29,8 @@ public class TrainTrack {
         theTrainActivity.addMessage("Train " + trainName + " is joining/joined the A loop at section 5");
         slotSem[4].P(); //wait for slot 4 to be empty
         slotSem[5].P(); //wait for slot 5 to be empty
-        slotSem[4].V(); //release slot 4
         slots[5] = "[" + trainName + "]"; //move train into slot 5
+        slotSem[4].V(); //release slot 4
     }//end function
 
     /*move trains toward junction*/
@@ -82,9 +82,8 @@ public class TrainTrack {
         theTrainActivity.addMessage("Train " + trainName + " is joining/joined the B loop at section 14");
         slotSem[13].P();
         slotSem[14].P(); //wait for slots 4 and 5 to be empty
-        slotSem[13].V();
-        slots[13] = "[..]";
         slots[14] = "[" + trainName + "]"; //move train into slot 5
+        slotSem[13].V();
     }//end function
 
     //move trains to junction
@@ -154,11 +153,11 @@ public class TrainTrack {
         slots[9] = "[..]"; //empty 9
         theTrainActivity.addMovedTo(0);
         slotSem[9].V(); //release 9
-        slotSem[18].V();
         slots[10] = slots[0]; //move from 0 into 10
         slots[0] = "[..]"; //empty 0
         theTrainActivity.addMovedTo(10);
         slotSem[0].V(); //release 0
+        slotSem[18].V(); //release 18
         CDS.idleQuietly((int) (Math.random() * 100));
     }
 
